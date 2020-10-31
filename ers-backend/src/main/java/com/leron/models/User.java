@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,8 +47,8 @@ public class User {
 	@Column(name = "email")
 	private String email;
 	
-	@JoinColumn(name = "roles", nullable = false)
-	@ManyToOne
+	@JoinColumn(name = "roles", nullable = true)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Role userRoleId;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
@@ -116,6 +117,21 @@ public class User {
 	public void setReimbursements(Set<Reimbursement> reimbursements) {
 		this.reimbursements = reimbursements;
 	}
+
+	public User(long id, String username, String password, String firstName, String lastName, String email,
+			Role userRoleId) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.userRoleId = userRoleId;
+	}
+
+
+
 	
 	
 	
