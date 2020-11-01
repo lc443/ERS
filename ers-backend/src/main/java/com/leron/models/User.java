@@ -47,7 +47,7 @@ public class User {
 	@Column(name = "email")
 	private String email;
 	
-	@JoinColumn(name = "roles", nullable = true)
+	@JoinColumn(name = "role", nullable = true)
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Role userRoleId;
 	
@@ -122,6 +122,17 @@ public class User {
 			Role userRoleId) {
 		super();
 		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.userRoleId = userRoleId;
+	}
+	
+	public User(String username, String password, String firstName, String lastName, String email,
+			Role userRoleId) {
+		super();
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;

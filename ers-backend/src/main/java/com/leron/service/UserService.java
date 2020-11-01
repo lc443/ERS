@@ -1,10 +1,13 @@
 package com.leron.service;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.leron.exceptions.UserNotFoundException;
 import com.leron.models.User;
 import com.leron.models.templates.UserLogin;
 import com.leron.models.templates.UserRegistration;
@@ -16,7 +19,7 @@ public class UserService {
 	private static Logger log = LoggerFactory.getLogger(UserService.class) ; 
 	@Autowired
 	private final UserRepository userDao;
-
+	
 	
 	public UserService(UserRepository userDao) {
 		this.userDao = userDao;
@@ -52,6 +55,15 @@ public class UserService {
 		 
 		 log.info("Loggin failed: Incorrect password");
 		 return null;
+	}
+	
+	public Optional<User> getUserById(long id) {
+		Optional<User> user = userDao.findById(id);
+		if(user == null) {
+			log.info("Could not find user");
+			throw new UserNotFoundException("Could not find User by id:" + id);
+		}
+		return user;
 	}
 	
 	public String authorName(int id) {
