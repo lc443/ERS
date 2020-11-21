@@ -22,7 +22,7 @@ import com.leron.service.UserService;
 
 @RestController
 @RequestMapping("/employees")
-@CrossOrigin(origins = "htp://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
 	@Autowired
