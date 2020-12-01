@@ -141,6 +141,15 @@ public class User {
 		this.userRoleId = userRoleId;
 	}
 
+	public User(String firstName, String lastName, String username, String password, String email) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+
 
 
 	

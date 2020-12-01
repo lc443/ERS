@@ -19,5 +19,12 @@ public class Role {
 	private int id;
 	@Column(name = "roles")
 	private String role;
+	public Role(int id, String role) {
+		super();
+		this.id = id;
+		this.role = role;
+	}
+	
+	
 	
 }
